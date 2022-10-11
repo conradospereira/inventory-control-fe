@@ -5,6 +5,7 @@ import { catchError, Observable, of } from 'rxjs';
 
 import { Product } from '../model/product';
 import { ProductsService } from '../services/products.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -14,11 +15,13 @@ import { ProductsService } from '../services/products.service';
 export class ProductsComponent implements OnInit {
 
   products$: Observable<Product[]>;
-  displayedColumns = ['description', 'code', 'price', 'amount'];
+  displayedColumns = ['description', 'code', 'price', 'amount', 'actions'];
 
   constructor(
     private productsService: ProductsService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.products$ = this.productsService.list()
     .pipe(
@@ -36,6 +39,10 @@ export class ProductsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 
 }
