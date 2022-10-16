@@ -21,4 +21,8 @@ export class ProductsService {
       tap(products => console.log(products))
     );
   }
+
+  save(record: Partial<Product>) {
+    return this.httpClient.post<Product>(this.API, record).pipe(first());
+  }
 }
