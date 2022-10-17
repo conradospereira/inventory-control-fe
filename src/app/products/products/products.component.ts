@@ -15,7 +15,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductsComponent implements OnInit {
 
   products$: Observable<Product[]>;
-  displayedColumns = ['description', 'code', 'price', 'amount', 'actions'];
 
   constructor(
     private productsService: ProductsService,
