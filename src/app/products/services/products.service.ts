@@ -18,7 +18,6 @@ export class ProductsService {
     .pipe(
       first(),
       delay(1000),
-      tap(products => console.log(products))
     );
   }
 
@@ -27,6 +26,17 @@ export class ProductsService {
   }
 
   save(record: Partial<Product>) {
+    if (record.id) {
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+  private create(record: Partial<Product>) {
     return this.httpClient.post<Product>(this.API, record).pipe(first());
+  }
+
+  private update(record: Partial<Product>) {
+    return this.httpClient.put<Product>(`${this.API}/${record.id}`, record).pipe(first());
   }
 }
