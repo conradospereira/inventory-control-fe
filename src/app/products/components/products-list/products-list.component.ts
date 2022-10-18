@@ -1,8 +1,6 @@
-import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 
-import { Product } from '../model/product';
+import { Product } from '../../model/product';
 
 @Component({
   selector: 'app-products-list',
