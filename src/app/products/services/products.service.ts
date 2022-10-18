@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Product } from '../model/product';
-import { delay, first, tap } from 'rxjs';
+import { delay, first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +38,9 @@ export class ProductsService {
 
   private update(record: Partial<Product>) {
     return this.httpClient.put<Product>(`${this.API}/${record.id}`, record).pipe(first());
+  }
+
+  remove(id: string) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
 }
