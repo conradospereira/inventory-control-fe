@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Product } from '../model/product';
@@ -11,17 +12,17 @@ import { Product } from '../model/product';
 export class ProductsListComponent implements OnInit {
 
   @Input() products: Product[] = [];
+  @Output() add = new EventEmitter(false);
 
   readonly displayedColumns = ['description', 'code', 'price', 'amount', 'actions'];
 
-  constructor(private router: Router,
-    private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   onAdd() {
-    this.router.navigate(['new'], {relativeTo: this.route});
+    this.add.emit(true);
   }
 
 }
