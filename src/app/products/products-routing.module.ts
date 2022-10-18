@@ -1,4 +1,4 @@
-import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductFormComponent } from './conteiners/product-form/product-form.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
